@@ -3,10 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {TolgeeProvider} from "@tolgee/react";
+import {UI} from "@tolgee/ui";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <TolgeeProvider
+      filesUrlPrefix="i18n/"
+      apiUrl={process.env.REACT_APP_TOLGEE_API_URL}
+      apiKey={process.env.REACT_APP_TOLGEE_API_KEY}
+      ui={process.env.REACT_APP_TOLGEE_API_KEY ? UI : undefined}
+      loadingFallback={<>Loading...</>}
+    >
+      <App />
+    </TolgeeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
